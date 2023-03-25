@@ -1,6 +1,5 @@
 package me.ShermansWorld.HardcoreFarming;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.event.Listener;
@@ -23,15 +22,6 @@ public class Main extends JavaPlugin {
 
 	public static Main getInstance() {
 		return Main.instance;
-	}
-
-	private void initHooks() {
-		if (Bukkit.getServer().getPluginManager().getPlugin("StackMob") != null) {
-			usingStackMob = true;
-			Bukkit.getLogger().info("[HardcoreFarming] Towny detected! Enabling support...");
-		} else {
-			usingStackMob = false;
-		}
 	}
 
 	@Override

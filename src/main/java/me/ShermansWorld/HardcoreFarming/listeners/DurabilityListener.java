@@ -7,6 +7,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,9 +15,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 
-
 public class DurabilityListener implements Listener {
-	
+
 	private static final Set<Material> cropBlocks = new HashSet<>();
 
 	static {
@@ -35,16 +35,34 @@ public class DurabilityListener implements Listener {
 		cropBlocks.add(Material.SWEET_BERRY_BUSH);
 		cropBlocks.add(Material.WHEAT);
 	}
-	
-	private static final Set<Material> hoes = new HashSet<>();
-	
+
+	private static final Set<Material> tools = new HashSet<>();
+
 	static {
-		hoes.add(Material.WOODEN_HOE);
-		hoes.add(Material.STONE_HOE);
-		hoes.add(Material.IRON_HOE);
-		hoes.add(Material.GOLDEN_HOE);
-		hoes.add(Material.DIAMOND_HOE);
-		hoes.add(Material.NETHERITE_HOE);
+		// axes
+		tools.add(Material.WOODEN_AXE);
+		tools.add(Material.STONE_AXE);
+		tools.add(Material.IRON_AXE);
+		tools.add(Material.GOLDEN_AXE);
+		tools.add(Material.DIAMOND_AXE);
+		tools.add(Material.NETHERITE_AXE);
+
+		// hoes
+		tools.add(Material.WOODEN_HOE);
+		tools.add(Material.STONE_HOE);
+		tools.add(Material.IRON_HOE);
+		tools.add(Material.GOLDEN_HOE);
+		tools.add(Material.DIAMOND_HOE);
+		tools.add(Material.NETHERITE_HOE);
+
+		// pickaxes
+		tools.add(Material.WOODEN_PICKAXE);
+		tools.add(Material.STONE_PICKAXE);
+		tools.add(Material.IRON_PICKAXE);
+		tools.add(Material.GOLDEN_PICKAXE);
+		tools.add(Material.DIAMOND_PICKAXE);
+		tools.add(Material.NETHERITE_PICKAXE);
+
 	}
 
 	@EventHandler
@@ -55,14 +73,24 @@ public class DurabilityListener implements Listener {
 			if (p.getGameMode() == GameMode.CREATIVE) {
 				return;
 			}
-			if (hoes.contains(p.getInventory().getItemInMainHand().getType())) {
-				ItemStack hoe = p.getInventory().getItemInMainHand();
-				Damageable dmg = (Damageable) hoe.getItemMeta();
-				dmg.setDamage(dmg.getDamage()+1);
-				hoe.setItemMeta(dmg);
-				p.getInventory().setItemInMainHand(hoe);
-				if (hoe.getType().getMaxDurability() <= dmg.getDamage()) {
-					p.getInventory().remove(hoe);
+			if (tools.contains(p.getInventory().getItemInMainHand().getType())) {
+				ItemStack tool = p.getInventory().getItemInMainHand();
+				double chance = 1.0;
+				double rand = Math.random();
+				// unbreaking formula
+				if (tool.containsEnchantment(Enchantment.DURABILITY)) {
+					chance = (100.0 / ( (double) tool.getEnchantmentLevel(Enchantment.DURABILITY) + 1.0))/100;
+				}
+				Damageable dmg = (Damageable) tool.getItemMeta();
+				// chance to remove durability
+				if (chance >= rand) {
+					// remove 1 durability from item
+					dmg.setDamage(dmg.getDamage() + 1);
+					tool.setItemMeta(dmg);
+					p.getInventory().setItemInMainHand(tool);
+				}
+				if (tool.getType().getMaxDurability() <= dmg.getDamage()) {
+					p.getInventory().remove(tool);
 					p.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0F, 1.0F);
 				}
 			}

@@ -16,10 +16,6 @@
 			<id>papermc</id>
 			<url>https://papermc.io/repo/repository/maven-public/</url>
 		</repository>
-		<repository>
-			<id>CodeMC</id>
-			<url>https://repo.codemc.org/repository/maven-public/</url>
-		</repository>
 	</repositories>
 	<dependencies>
 		<!--This adds the Spigot API artifact to the build -->
@@ -28,11 +24,6 @@
 			<artifactId>spigot-api</artifactId>
 			<version>1.19-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>uk.antiperson.stackmob</groupId>
-			<artifactId>StackMob</artifactId>
-			<version>5.8.5</version>
 		</dependency>
 	</dependencies>
 </project>
