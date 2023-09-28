@@ -6,14 +6,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.ShermansWorld.HardcoreFarming.ConfigVals;
+import me.ShermansWorld.HardcoreFarming.Config;
 import me.ShermansWorld.HardcoreFarming.Helper;
-import me.ShermansWorld.HardcoreFarming.Main;
+import me.ShermansWorld.HardcoreFarming.HardcoreFarming;
 
 public class HardcoreFarmingCommands implements CommandExecutor {
 	String version = Bukkit.getPluginManager().getPlugin("HardcoreFarming").getDescription().getVersion();
 
-	public HardcoreFarmingCommands(Main plugin) {
+	public HardcoreFarmingCommands(HardcoreFarming plugin) {
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -34,9 +34,9 @@ public class HardcoreFarmingCommands implements CommandExecutor {
 					return false;
 				}
 				player.sendMessage(Helper.Chatlabel() + Helper.color("&aconfig.yml reloaded!"));
-				Main.getInstance().reloadConfig();
-				Main.getInstance().saveDefaultConfig();
-				ConfigVals.getConfigVals();
+				HardcoreFarming.getInstance().reloadConfig();
+				HardcoreFarming.getInstance().saveDefaultConfig();
+				Config.getConfigVals();
 				return true;
 			}
 		}

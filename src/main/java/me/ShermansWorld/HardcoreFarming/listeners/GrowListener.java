@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockGrowEvent;
 
-import me.ShermansWorld.HardcoreFarming.ConfigVals;
+import me.ShermansWorld.HardcoreFarming.Config;
 
 public class GrowListener implements Listener {
 
@@ -21,12 +21,12 @@ public class GrowListener implements Listener {
 			Location below = new Location(currentLoc.getWorld(), currentLoc.getBlockX(), currentLoc.getBlockY() - 1,
 					currentLoc.getBlockZ());
 			if (below.getBlock().getType() == Material.CACTUS) {
-				if (chance > ConfigVals.cactusGrowrthRate) {
+				if (chance > Config.cactusGrowrthRate) {
 					e.setCancelled(true);
 				}
 				return;
 			} else if (below.getBlock().getType() == Material.SUGAR_CANE) {
-				if (chance > ConfigVals.sugarCaneGrowthRate) {
+				if (chance > Config.sugarCaneGrowthRate) {
 					e.setCancelled(true);
 				}
 				return;
@@ -43,7 +43,7 @@ public class GrowListener implements Listener {
 			if (north.getBlock().getType() == Material.MELON_STEM || south.getBlock().getType() == Material.MELON_STEM
 					|| east.getBlock().getType() == Material.MELON_STEM
 					|| west.getBlock().getType() == Material.MELON_STEM) {
-				if (chance > ConfigVals.melonGrowthRate) {
+				if (chance > Config.melonGrowthRate) {
 					e.setCancelled(true);
 				}
 				return;
@@ -52,58 +52,58 @@ public class GrowListener implements Listener {
 					|| south.getBlock().getType() == Material.PUMPKIN_STEM
 					|| east.getBlock().getType() == Material.PUMPKIN_STEM
 					|| west.getBlock().getType() == Material.PUMPKIN_STEM) {
-				if (chance > ConfigVals.pumpkinGrowthRate) {
+				if (chance > Config.pumpkinGrowthRate) {
 					e.setCancelled(true);
 				}
 				return;
 			}
 		case BEETROOTS:
-			if (chance > ConfigVals.beetrootGrowthRate) {
+			if (chance > Config.beetrootGrowthRate) {
 				e.setCancelled(true);
 			}
 			return;
 		case CARROTS:
-			if (chance > ConfigVals.carrotGrowthRate) {
+			if (chance > Config.carrotGrowthRate) {
 				e.setCancelled(true);
 			}
 			return;
 		case CHORUS_FLOWER:
-			if (chance > ConfigVals.chorusGrowthRate) {
+			if (chance > Config.chorusGrowthRate) {
 				e.setCancelled(true);
 			}
 			return;
 		case COCOA:
-			if (chance > ConfigVals.cocoaGrowthRate) {
+			if (chance > Config.cocoaGrowthRate) {
 				e.setCancelled(true);
 			}
 			return;
 		case MELON_STEM:
-			if (chance > ConfigVals.melonGrowthRate) {
+			if (chance > Config.melonGrowthRate) {
 				e.setCancelled(true);
 			}
 			return;
 		case NETHER_WART:
-			if (chance > ConfigVals.netherWartGrowthRate) {
+			if (chance > Config.netherWartGrowthRate) {
 				e.setCancelled(true);
 			}
 			return;
 		case POTATOES:
-			if (chance > ConfigVals.potatoGrowthRate) {
+			if (chance > Config.potatoGrowthRate) {
 				e.setCancelled(true);
 			}
 			return;
 		case PUMPKIN_STEM:
-			if (chance > ConfigVals.pumpkinGrowthRate) {
+			if (chance > Config.pumpkinGrowthRate) {
 				e.setCancelled(true);
 			}
 			return;
 		case SWEET_BERRY_BUSH:
-			if (chance > ConfigVals.sweetBerryGrowthRate) {
+			if (chance > Config.sweetBerryGrowthRate) {
 				e.setCancelled(true);
 			}
 			return;
 		case WHEAT:
-			if (chance > ConfigVals.wheatGrowthRate) {
+			if (chance > Config.wheatGrowthRate) {
 				e.setCancelled(true);
 			}
 			return;

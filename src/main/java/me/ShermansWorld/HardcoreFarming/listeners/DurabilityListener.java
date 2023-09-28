@@ -15,6 +15,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 
+import me.ShermansWorld.HardcoreFarming.Config;
+
 public class DurabilityListener implements Listener {
 
 	private static final Set<Material> cropBlocks = new HashSet<>();
@@ -67,6 +69,9 @@ public class DurabilityListener implements Listener {
 
 	@EventHandler
 	public static void onBlockBreak(BlockBreakEvent e) {
+		if (!Config.enableHoeDurability) {
+			return;
+		}
 		Block b = e.getBlock();
 		if (cropBlocks.contains(b.getType())) {
 			Player p = e.getPlayer();

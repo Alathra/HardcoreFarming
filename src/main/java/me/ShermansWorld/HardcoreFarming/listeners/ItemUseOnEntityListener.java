@@ -11,9 +11,9 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
-import me.ShermansWorld.HardcoreFarming.ConfigVals;
+import me.ShermansWorld.HardcoreFarming.Config;
 import me.ShermansWorld.HardcoreFarming.Helper;
-import me.ShermansWorld.HardcoreFarming.Main;
+import me.ShermansWorld.HardcoreFarming.HardcoreFarming;
 
 public class ItemUseOnEntityListener implements Listener {
 
@@ -47,70 +47,70 @@ public class ItemUseOnEntityListener implements Listener {
 			int feedAmount;
 			switch (animal.getType()) {
 			case BEE:
-				feedAmount = ConfigVals.beeFeedAmount;
+				feedAmount = Config.beeFeedAmount;
 				break;
 			case CAT:
-				feedAmount = ConfigVals.catFeedAmount;
+				feedAmount = Config.catFeedAmount;
 				break;
 			case CHICKEN:
-				feedAmount = ConfigVals.chickenFeedAmount;
+				feedAmount = Config.chickenFeedAmount;
 				break;
 			case COW:
-				feedAmount = ConfigVals.cowFeedAmount;
+				feedAmount = Config.cowFeedAmount;
 				break;
 			case DONKEY:
-				feedAmount = ConfigVals.donkeyFeedAmount;
+				feedAmount = Config.donkeyFeedAmount;
 				break;
 			case FROG:
-				feedAmount = ConfigVals.frogFeedAmount;
+				feedAmount = Config.frogFeedAmount;
 				break;
 			case FOX:
-				feedAmount = ConfigVals.foxFeedAmount;
+				feedAmount = Config.foxFeedAmount;
 				break;
 			case GOAT:
-				feedAmount = ConfigVals.goatFeedAmount;
+				feedAmount = Config.goatFeedAmount;
 				break;
 			case HOGLIN:
-				feedAmount = ConfigVals.hoglinFeedAmount;
+				feedAmount = Config.hoglinFeedAmount;
 				break;
 			case HORSE:
-				feedAmount = ConfigVals.horseFeedAmount;
+				feedAmount = Config.horseFeedAmount;
 				break;
 			case LLAMA:
-				feedAmount = ConfigVals.llamaFeedAmount;
+				feedAmount = Config.llamaFeedAmount;
 				break;
 			case TRADER_LLAMA:
-				feedAmount = ConfigVals.llamaFeedAmount;
+				feedAmount = Config.llamaFeedAmount;
 				break;
 			case MUSHROOM_COW:
-				feedAmount = ConfigVals.mooshroomFeedAmount;
+				feedAmount = Config.mooshroomFeedAmount;
 				break;
 			case OCELOT:
-				feedAmount = ConfigVals.ocelotFeedAmount;
+				feedAmount = Config.ocelotFeedAmount;
 				break;
 			case PANDA:
-				feedAmount = ConfigVals.pandaFeedAmount;
+				feedAmount = Config.pandaFeedAmount;
 				break;
 			case PIG:
-				feedAmount = ConfigVals.pigFeedAmount;
+				feedAmount = Config.pigFeedAmount;
 				break;
 			case RABBIT:
-				feedAmount = ConfigVals.rabbitFeedAmount;
+				feedAmount = Config.rabbitFeedAmount;
 				break;
 			case SHEEP:
-				feedAmount = ConfigVals.sheepFeedAmount;
+				feedAmount = Config.sheepFeedAmount;
 				break;
 			case STRIDER:
-				feedAmount = ConfigVals.striderFeedAmount;
+				feedAmount = Config.striderFeedAmount;
 				break;
 			case TURTLE:
-				feedAmount = ConfigVals.turtleFeedAmount;
+				feedAmount = Config.turtleFeedAmount;
 				break;
 			case WOLF:
 				if (animal.getHealth() < animal.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
 					return;
 				}
-				feedAmount = ConfigVals.wolfFeedAmount;
+				feedAmount = Config.wolfFeedAmount;
 				break;
 			default:
 				feedAmount = 1;
@@ -118,7 +118,7 @@ public class ItemUseOnEntityListener implements Listener {
 			}
 			if (item.getAmount() >= feedAmount) {
 				if (item.getAmount() == feedAmount) {
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(HardcoreFarming.getInstance(), new Runnable() {
 					    @Override
 					    public void run() {
 					    	item.setAmount(item.getAmount() - (feedAmount));

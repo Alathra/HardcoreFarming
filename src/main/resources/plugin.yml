@@ -1,0 +1,9 @@
+name: HardcoreFarming
+version: 1.1
+api-version: 1.20
+author: ShermansWorld
+main: me.ShermansWorld.HardcoreFarming.HardcoreFarming
+description: A simple plugin that allows you to make farming more challenging
+commands:
+  hardcorefarming:
+    description: Base command for Hardcore Farming

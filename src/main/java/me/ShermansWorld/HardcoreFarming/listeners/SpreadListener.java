@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockSpreadEvent;
 
-import me.ShermansWorld.HardcoreFarming.ConfigVals;
+import me.ShermansWorld.HardcoreFarming.Config;
 
 //DOES NOT ACCOUNT FOR GROWING MUSHROOMS (spread not giant)
 public class SpreadListener implements Listener {
@@ -25,12 +25,12 @@ public class SpreadListener implements Listener {
 					currentLoc.getBlockZ());
 			if (below.getBlock().getType() == Material.BAMBOO
 					|| below.getBlock().getType() == Material.BAMBOO_SAPLING) {
-				if (chance > ConfigVals.bambooGrowthRate) {
+				if (chance > Config.bambooGrowthRate) {
 					e.setCancelled(true);
 				}
 				return;
 			} else if (below.getBlock().getType() == Material.CHORUS_FLOWER) {
-				if (chance > ConfigVals.chorusGrowthRate) {
+				if (chance > Config.chorusGrowthRate) {
 					e.setCancelled(true);
 				}
 				return;
@@ -47,7 +47,7 @@ public class SpreadListener implements Listener {
 					|| south.getBlock().getType() == Material.CHORUS_FLOWER
 					|| east.getBlock().getType() == Material.CHORUS_FLOWER
 					|| west.getBlock().getType() == Material.CHORUS_FLOWER) {
-				if (chance > ConfigVals.chorusGrowthRate) {
+				if (chance > Config.chorusGrowthRate) {
 					e.setCancelled(true);
 				}
 				return;
@@ -55,7 +55,7 @@ public class SpreadListener implements Listener {
 			Location above = new Location(currentLoc.getWorld(), currentLoc.getBlockX(), currentLoc.getBlockY() + 1,
 					currentLoc.getBlockZ());
 			if (above.getBlock().getType() == Material.CAVE_VINES) {
-				if (chance > ConfigVals.glowBerryGrowthRate) {
+				if (chance > Config.glowBerryGrowthRate) {
 					e.setCancelled(true);
 				}
 				return;
@@ -65,7 +65,7 @@ public class SpreadListener implements Listener {
 			Location below2 = new Location(currentLoc2.getWorld(), currentLoc2.getBlockX(), currentLoc2.getBlockY() - 1,
 					currentLoc2.getBlockZ());
 			if (below2.getBlock().getType() == Material.KELP) {
-				if (chance > ConfigVals.kelpGrowthRate) {
+				if (chance > Config.kelpGrowthRate) {
 					e.setCancelled(true);
 				}
 				return;
