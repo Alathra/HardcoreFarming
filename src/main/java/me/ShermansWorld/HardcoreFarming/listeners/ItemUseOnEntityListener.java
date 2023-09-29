@@ -1,6 +1,5 @@
 package me.ShermansWorld.HardcoreFarming.listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Animals;
@@ -10,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.ShermansWorld.HardcoreFarming.Config;
 import me.ShermansWorld.HardcoreFarming.Helper;
@@ -18,9 +18,9 @@ import me.ShermansWorld.HardcoreFarming.HardcoreFarming;
 public class ItemUseOnEntityListener implements Listener {
 
 	@EventHandler
-	public static void ItemUseOnEntity(PlayerInteractEntityEvent e) {
+	public static void onItemUseOnEntity(PlayerInteractEntityEvent e) {
 
-		Player p = e.getPlayer();
+		final Player p = e.getPlayer();
 		ItemStack item;
 		if (e.getHand() == EquipmentSlot.HAND) {
 			item = p.getInventory().getItemInMainHand();
@@ -118,13 +118,15 @@ public class ItemUseOnEntityListener implements Listener {
 			}
 			if (item.getAmount() >= feedAmount) {
 				if (item.getAmount() == feedAmount) {
-					Bukkit.getScheduler().scheduleSyncDelayedTask(HardcoreFarming.getInstance(), new Runnable() {
-					    @Override
-					    public void run() {
-					    	item.setAmount(item.getAmount() - (feedAmount));
-					    	p.getInventory().remove(item);
-					    }
-					}, 5L); //20 Tick (1 Second) delay before run() is called
+					final int tempFeedAmount = feedAmount;
+					final ItemStack tempItem = item;
+					new BukkitRunnable() {
+						@Override
+						public void run() {
+							tempItem.setAmount(tempItem.getAmount() - (tempFeedAmount));
+					    	p.getInventory().remove(tempItem);
+						}
+					}.runTaskLater(HardcoreFarming.getInstance(), 5L);
 				} else {
 					if (e.getHand() == EquipmentSlot.HAND) {
 						p.getInventory().setItem(EquipmentSlot.HAND, new ItemStack(Material.AIR));;

@@ -2,7 +2,7 @@
 # |   Hardcore Farming by ShermansWorld  |
 # ========================================
 
-config-version: 1
+config-version: 2
 
 # =====================================
 # |          GENERAL SETTINGS         |
@@ -93,6 +93,8 @@ RedMushroomGrowthRate: 0.2
 SpruceGrowthRate: 0.2
 
 WarpedFungusGrowthRate: 0.2
+
+CherryGrowthRate: 0.2
 
 # =====================================
 # |        ANIMAL FEED SETTINGS       |
