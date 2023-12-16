@@ -33,7 +33,6 @@ public class ItemUseOnEntityListener implements Listener {
 				return;
 			}
 			if (!animal.isAdult()) {
-				e.setCancelled(true);
 				return;
 			}
 			if (!animal.canBreed()) {
