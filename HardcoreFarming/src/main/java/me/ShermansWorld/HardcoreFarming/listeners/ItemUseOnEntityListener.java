@@ -33,7 +33,6 @@ public class ItemUseOnEntityListener implements Listener {
 				return;
 			}
 			if (!animal.isAdult()) {
-				e.setCancelled(true);
 				return;
 			}
 			if (!animal.canBreed()) {
@@ -130,11 +129,11 @@ public class ItemUseOnEntityListener implements Listener {
 				} else {
 					if (e.getHand() == EquipmentSlot.HAND) {
 						p.getInventory().setItem(EquipmentSlot.HAND, new ItemStack(Material.AIR));;
-						item.setAmount(item.getAmount() - feedAmount);
+						item.setAmount(item.getAmount() - (feedAmount - 1));
 						p.getInventory().addItem(item);
 					} else {
 						p.getInventory().setItem(EquipmentSlot.OFF_HAND, new ItemStack(Material.AIR));;
-						item.setAmount(item.getAmount() - feedAmount);
+						item.setAmount(item.getAmount() - (feedAmount -1));
 						p.getInventory().setItem(EquipmentSlot.OFF_HAND, item);
 					}
 				}
